@@ -46,13 +46,13 @@ until false
   elsif cmd == "Z" #command for filling Set Y with new values
     setVals(setZ, args)
   elsif cmd == "q"
-    break
+    break #User wants to quit, exit the loop
   else
     # Give error message to let the user know their mistake. Colored red!
     puts "\e[#{31}m    ERROR:\e[0m #{cmd} is not a valid command! Please Refer to the command list."
   end
 end
-puts "Exiting program, goodbye!"
+print "Exiting program, goodbye!"
 #############################################################################################
 # End of Main Program Loop
 #############################################################################################

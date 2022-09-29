@@ -17,7 +17,7 @@ class BST_Set
       while curNode != nil
         prevNode = curNode
         if givenVal == curNode.val #We're making sets so NO REPEATS ALLOWED!!
-          puts "BAD! Cannot put duplicate values in a set!"
+          puts "\e[#{33}m    Warning:\e[0m Duplicates not allowed. Keeping only single instance of #{givenVal}\n"
           return
         elsif givenVal < curNode.val
           curNode = curNode.leftNode
