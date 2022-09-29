@@ -1,3 +1,4 @@
+# TODO: Comment all these functions
 class BST_Set
   attr_accessor :root, :size
 
@@ -13,7 +14,7 @@ class BST_Set
       curNode = @root
       prevNode = @root
 
-      while curNode != nil #TODO: Use nil?
+      while curNode != nil
         prevNode = curNode
         if givenVal == curNode.val #We're making sets so NO REPEATS ALLOWED!!
           puts "BAD! Cannot put duplicate values in a set!"
