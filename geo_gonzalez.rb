@@ -33,7 +33,7 @@ until args[0] == "q"
   args = input.split
   if args[0] == "X" #command for filling X set
     setVals(setX, args[1..])
-  elsif args[0] == "Y"
+  elsif args[0] == "Y" #TODO: Finish commenting
     setVals(setY, args[1..])
   elsif args[0] == "Z"
     setVals(setZ, args[1..])
