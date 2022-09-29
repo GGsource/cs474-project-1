@@ -5,7 +5,7 @@
 # Description: This file contains the main content of the command-line program, the
 # main loop as well as each of the valid arguments is defined here.
 #############################################################################################
-require_relative "geo_gonzalez"
+require_relative "BST_Set"
 
 #############################################################################################
 # Helper Functions
@@ -15,7 +15,13 @@ require_relative "geo_gonzalez"
 def setVals(givenSet, args)
   givenSet = BST_Set.new
   for val in args
-    givenSet.add(val.to_i)
+    begin
+      givenNum = Float(val)
+    rescue ArgumentError
+      puts "\e[#{31}m    ERROR:\e[0m #{val} is not a valid number! Please try again.\n"
+    else
+      givenSet.add(givenNum)
+    end
   end
 end
 
@@ -27,21 +33,26 @@ end
 setX, setY, setZ = nil #Our 3 main sets, beginning as null
 input = nil            #Where we receive the user's raw input
 args = []              #Where we will split the user's input by spaces
-until args[0] == "q"
-  puts "Hello, welcome to CS474 Project 1! Please input your command:"
+until false
+  print "Hello, welcome to CS474 Project 1! Please input your command: "
   input = gets
-  args = input.split
-  if args[0] == "X" #command for filling X set
-    setVals(setX, args[1..])
-  elsif args[0] == "Y" #TODO: Finish commenting
-    setVals(setY, args[1..])
-  elsif args[0] == "Z"
-    setVals(setZ, args[1..])
+  splitInput = input.split
+  cmd = splitInput[0]
+  args = splitInput[1..]
+  if cmd == "X" #command for filling Set Y with new values
+    setVals(setX, args)
+  elsif cmd == "Y" #command for filling Set Y with new values
+    setVals(setY, args)
+  elsif cmd == "Z" #command for filling Set Y with new values
+    setVals(setZ, args)
+  elsif cmd == "q"
+    break
   else
-    puts "Invalid command! Please Refer to the list command."
+    # Give error message to let the user know their mistake. Colored red!
+    puts "\e[#{31}m    ERROR:\e[0m #{cmd} is not a valid command! Please Refer to the command list."
   end
 end
-puts "Exiting. Goodbye!"
+puts "Exiting program, goodbye!"
 #############################################################################################
 # End of Main Program Loop
 #############################################################################################
