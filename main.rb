@@ -1,6 +1,6 @@
 #############################################################################################
 # Author: Geo Gonzalez
-# Name: geo_gonzalez.rb
+# Name: main.rb
 # Date: September 28th 2022
 # Description: This file contains the main content of the command-line program, the
 # main loop as well as each of the valid arguments is defined here.
@@ -13,12 +13,14 @@ require_relative "BST_Set"
 #setVals -
 #Function for setting the given set to the given values. Commands X, Y and Z all use this.
 def setVals(givenSet, args)
-  givenSet.clear
+  givenSet.clear #First clear out anything old
   for val in args
     begin
-      givenNum = Float(val)
-    rescue ArgumentError
-      puts "\e[#{31}m    ERROR:\e[0m #{val} is not a valid number! Please try again.\n"
+      givenNum = Float(val) #Parse the value as a float
+    rescue ArgumentError #if it was not able to be made a float, notify user and stop
+      puts "\e[#{31}m    ERROR:\e[0m \'#{val}\' is not a valid number! Please try again.\n"
+      givenSet.clear #If we failed in the middle of adding items, we should just get rid of all of them
+      break
     else
       givenSet.add(givenNum)
     end
@@ -30,7 +32,7 @@ end
 #############################################################################################
 # Main Program Loop
 #############################################################################################
-setX, setY, setZ = BST_Set.new #Our 3 main sets, beginning as null
+setX, setY, setZ = BST_Set.new, BST_Set.new, BST_Set.new #Our 3 main sets, beginning as null
 input = nil            #Where we receive the user's raw input
 args = []              #Where we will split the user's input by spaces
 until false
