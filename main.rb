@@ -47,7 +47,9 @@ until false #Infinite Loop until forced to break
   when "X".."Z" #command for filling set X, Y, or Z with new values
     setVals(binding.local_variable_get("set" + cmd), args)
   when "a" #command for adding one additional value to set X specifically
-    setX.add(args[0].to_i) unless args.length() > 1
+    # setX.add(args[0].to_i) unless args.length() != 1
+    unless args.length() != 1 then setX.add(args[0].to_i) else puts "\e[#{31}m    ERROR:\e[0m \'a\' takes 1 argument." end
+  when "r"
   when "q" #User wants to quit, exit the loop
     break
   else
