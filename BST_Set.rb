@@ -41,17 +41,13 @@ class BST_Set
   end
 
   def to_s
-    setString = ""
-    setString = printNodes(@root, setString)
-    return "(#{setString[0...-2]})"
+    setString = printNodes(@root, "")
+    "(#{setString[0...-2]})"
   end
 
   private def printNodes(rootNode, finalString)
-    if rootNode.nil?
-      return ""
-    end
-
-    return finalString += printNodes(rootNode.leftNode, finalString) + "#{rootNode.val}, " + printNodes(rootNode.rightNode, finalString)
+    return "" if rootNode.nil?
+    finalString += printNodes(rootNode.leftNode, finalString) + "#{rootNode.val}, " + printNodes(rootNode.rightNode, finalString)
   end
 
   class TreeNode
