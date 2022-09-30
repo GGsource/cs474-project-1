@@ -10,6 +10,7 @@ require_relative "BST_Set"
 #############################################################################################
 # Helper Functions
 #############################################################################################
+
 # setVals -
 # Function for setting the given set to the given values. Commands X, Y and Z all use this.
 def setVals(givenSet, args)
@@ -47,6 +48,10 @@ until false #Infinite Loop until forced to break
     setY.map(->(val) { setX.add(val) }); setY.clear
   when "i" #command for intersecting set X and Y into a new set in X. Clears Y
     newSet = BST_Set.new; setX.map(->(val) { newSet.add(val) if setY.contains?(val) }); setX = newSet; setY.clear
+  when "c" #command for deep copying set X into Y. Clears Y
+    setY.clear; setX.map(->(val) { setY.add(val) }, isPreOrder: true) #isPreOrder argument changes map to preorder traversal
+  when "l" #command for executing a given lambda. Example: "l ->(val){val*1000}" will print out X's values multiplied by 1000
+    setX.map(eval(args[0]), isPrinting: true) #isPrinting argument changes map to print the result of its evaluation
   when "q" #User wants to quit, exit the loop
     break
   else
