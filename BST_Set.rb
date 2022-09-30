@@ -58,8 +58,18 @@ class BST_Set
     "(#{s[0...-2]})"
   end
 
-  def contains?(givenVal)
-    # TODO: Implement contains, for use in intersection function
+  def contains?(givenVal) #Returns value in ~O(logN) time
+    traveler = @root
+    until traveler.nil?
+      if traveler.val == givenVal
+        return true
+      elsif givenVal < traveler.val
+        traveler = traveler.leftNode
+      elsif givenVal > traveler.val
+        traveler = traveler.rightNode
+      end
+    end
+    return false #We could have simply mapped but that would be inefficient O(N) time
   end
 
   class TreeNode
