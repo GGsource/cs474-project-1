@@ -47,10 +47,11 @@ until false #Infinite Loop until forced to break
   when "X".."Z" #command for filling set X, Y, or Z with new values
     setVals(binding.local_variable_get("set" + cmd), args)
   when "a" #command for adding one additional value to set X specifically
-    # setX.add(args[0].to_i) unless args.length() != 1
-    unless args.length() != 1 then setX.add(args[0].to_i) else puts "\e[#{31}m    ERROR:\e[0m \'a\' takes 1 argument." end
-  when "r"
+    setX.add(args[0].to_i) unless args.length() != 1
+  when "r" #command for rotating the 3 sets
     setTemp = setX; setX = setZ; setZ = setY; setY = setTemp
+  when "s" #command for switching set X and Y
+    setTemp = setX; setX = setY; setY = setTemp
   when "q" #User wants to quit, exit the loop
     break
   else
