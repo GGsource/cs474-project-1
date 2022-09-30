@@ -35,6 +35,11 @@ class BST_Set
     @size += 1
   end
 
+  def clear
+    @root = nil
+    @size = 0
+  end
+
   def to_s
     setString = ""
     setString = printNodes(@root, setString)
