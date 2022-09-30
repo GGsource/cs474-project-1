@@ -52,6 +52,8 @@ until false #Infinite Loop until forced to break
     setTemp = setX; setX = setZ; setZ = setY; setY = setTemp
   when "s" #command for switching set X and Y
     setTemp = setX; setX = setY; setY = setTemp
+  when "u" #command for unifying set X and Y into a combined set in X. Clears Y
+    setY.map(->(val) { setX.add(val) }); setY.clear
   when "q" #User wants to quit, exit the loop
     break
   else
