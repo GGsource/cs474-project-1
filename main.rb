@@ -13,17 +13,9 @@ require_relative "BST_Set"
 # setVals -
 # Function for setting the given set to the given values. Commands X, Y and Z all use this.
 def setVals(givenSet, args)
-  givenSet.clear #First clear out anything old
   for val in args
-    begin
-      givenNum = Float(val) #Parse the value as a float
-    rescue ArgumentError #if it was not able to be made a float, notify user and stop
-      puts "\e[#{31}m    ERROR:\e[0m \'#{val}\' is not a valid number! Please try again.\n"
-      givenSet.clear #If we failed in the middle of adding items, we should just get rid of all of them
-      break
-    else
-      givenSet.add(givenNum)
-    end
+    givenNum = Integer(val) #Parse the value as an int
+    givenSet.add(givenNum)
   end
 end
 
@@ -37,8 +29,7 @@ until false #Infinite Loop until forced to break
   # Greet the user and request their command
   print "Hello, welcome to CS474 Project 1! Please input your command: "
   # TODO: List available commands so the user knows
-  input = gets                  #Get user input
-  input = input.split(" ", 2)   #Split user input into command and arguments
+  input = gets.split(" ", 2)    #Get user input & Split user input into command and arguments
   cmd = input[0]                #Command the user wants to use
   args = input[1].split(",")    #Arguments the user is providing for the command
 
@@ -54,6 +45,8 @@ until false #Infinite Loop until forced to break
     setTemp = setX; setX = setY; setY = setTemp
   when "u" #command for unifying set X and Y into a combined set in X. Clears Y
     setY.map(->(val) { setX.add(val) }); setY.clear
+  when "i" #command for intersecting set X and Y into a new set in X. Clears Y
+    newSet = BST_Set.new; setX.map(->(val) { newSet.add(val) if setY.contains?(val) }); setX = newSet; setY.clear
   when "q" #User wants to quit, exit the loop
     break
   else
