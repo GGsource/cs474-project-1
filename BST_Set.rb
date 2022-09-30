@@ -40,16 +40,23 @@ class BST_Set
     @size = 0
   end
 
-  def _map(rootNode, givenFunction)
+  def _map(rootNode, givenFunction, isPreOrder, isPrinting)
     return if rootNode.nil?
-    _map(rootNode.leftNode, givenFunction)
-    givenFunction.call(rootNode.val)
-    _map(rootNode.rightNode, givenFunction)
-    return
+    moddedVal = nil
+    unless isPreOrder
+      _map(rootNode.leftNode, givenFunction, isPreOrder, isPrinting)
+      moddedVal = givenFunction.call(rootNode.val)
+      puts "#{moddedVal}" if isPrinting
+      _map(rootNode.rightNode, givenFunction, isPreOrder, isPrinting)
+    else #If called with isBreadthFirst true,
+      givenFunction.call(rootNode.val)
+      _map(rootNode.leftNode, givenFunction, isPreOrder, isPrinting)
+      _map(rootNode.rightNode, givenFunction, isPreOrder, isPrinting)
+    end
   end
 
-  def map(givenFunction)
-    _map(@root, givenFunction)
+  def map(givenFunction, isPreOrder: false, isPrinting: false)
+    _map(@root, givenFunction, isPreOrder, isPrinting)
   end
 
   def to_s
