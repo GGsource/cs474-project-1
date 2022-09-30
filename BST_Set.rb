@@ -41,8 +41,7 @@ class BST_Set
   end
 
   def to_s
-    setString = printNodes(@root, "")
-    "(#{setString[0...-2]})"
+    "(#{printNodes(@root, "")[0...-2]})"
   end
 
   private def printNodes(rootNode, finalString)
