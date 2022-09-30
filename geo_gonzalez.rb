@@ -13,7 +13,7 @@ require_relative "BST_Set"
 #setVals -
 #Function for setting the given set to the given values. Commands X, Y and Z all use this.
 def setVals(givenSet, args)
-  givenSet = BST_Set.new
+  givenSet.clear
   for val in args
     begin
       givenNum = Float(val)
@@ -23,8 +23,6 @@ def setVals(givenSet, args)
       givenSet.add(givenNum)
     end
   end
-  # FIXME: Values are not reflected outside of this
-  puts "The set is now: #{givenSet}"
 end
 
 #############################################################################################
@@ -32,7 +30,7 @@ end
 #############################################################################################
 # Main Program Loop
 #############################################################################################
-setX, setY, setZ = nil #Our 3 main sets, beginning as null
+setX, setY, setZ = BST_Set.new #Our 3 main sets, beginning as null
 input = nil            #Where we receive the user's raw input
 args = []              #Where we will split the user's input by spaces
 until false
@@ -42,18 +40,18 @@ until false
   cmd = splitInput[0]
   args = splitInput[1].split(",")
   if cmd == "X" #command for filling Set Y with new values
-    setVals(setX, args) #
+    setVals(setX, args)
   elsif cmd == "Y" #command for filling Set Y with new values
-    setVals(setY, args) #
+    setVals(setY, args)
   elsif cmd == "Z" #command for filling Set Y with new values
-    setVals(setZ, args) #
+    setVals(setZ, args)
   elsif cmd == "q" #User wants to quit, exit the loop
     break
   else
     # Give error message to let the user know their mistake. Colored red!
     puts "\e[#{31}m    ERROR:\e[0m #{cmd} is not a valid command! Please Refer to the command list."
   end
-  puts "Set X: #{setX}, Set Y: #{setY} , Set Z: #{setZ}"
+  puts "Set X: #{setX}\nSet Y: #{setY}\nSet Z: #{setZ}"
 end
 print "Exiting program, goodbye!"
 #############################################################################################
