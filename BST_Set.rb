@@ -40,8 +40,22 @@ class BST_Set
     @size = 0
   end
 
+  def _map(rootNode, givenFunction)
+    return if rootNode.nil?
+    _map(rootNode.leftNode, givenFunction)
+    givenFunction.call(rootNode.val)
+    _map(rootNode.rightNode, givenFunction)
+    return
+  end
+
+  def map(givenFunction)
+    _map(@root, givenFunction)
+  end
+
   def to_s
-    "(#{printNodes(@root, "")[0...-2]})"
+    s = ""
+    map(->(val) { s += "#{val}, " })
+    "(#{s[0...-2]})"
   end
 
   private def printNodes(rootNode, finalString)
