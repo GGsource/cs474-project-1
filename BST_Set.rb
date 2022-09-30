@@ -58,9 +58,8 @@ class BST_Set
     "(#{s[0...-2]})"
   end
 
-  private def printNodes(rootNode, finalString)
-    return "" if rootNode.nil?
-    finalString += printNodes(rootNode.leftNode, finalString) + "#{rootNode.val}, " + printNodes(rootNode.rightNode, finalString)
+  def contains?(givenVal)
+    # TODO: Implement contains, for use in intersection function
   end
 
   class TreeNode
