@@ -6,38 +6,36 @@
 # main loop as well as each of the valid arguments is defined here.
 #############################################################################################
 require_relative "BST_Set"
-
-#############################################################################################
-# Helper Functions
-#############################################################################################
-
-# setVals -
-# Function for setting the given set to the given values. Commands X, Y and Z all use this.
-def setVals(givenSet, args)
-  for val in args
-    givenNum = Integer(val) #Parse the value as an int
-    givenSet.add(givenNum)
-  end
-end
-
-#############################################################################################
-# End of Helper Functions
 #############################################################################################
 # Main Program Loop
 #############################################################################################
 setX, setY, setZ = BST_Set.new, BST_Set.new, BST_Set.new #Our 3 main sets, beginning as null
+puts "Hello, welcome to CS474 Project 1!" # Greet the user
 until false #Infinite Loop until forced to break
-  # Greet the user and request their command
-  print "Hello, welcome to CS474 Project 1! Please input your command: "
-  # TODO: List available commands so the user knows
-  input = gets.split(" ", 2)    #Get user input & Split user input into command and arguments
+  # Tell user what commands they can use
+  puts "  ┌ X values - Takes a comma-separated list of numeric arguments denoted by values and puts them into X, replacing anything previous.
+  ├ Y values - Takes a comma-separated list of numeric arguments denoted by values and puts them into Y, replacing anything previous.
+  ├ Z values - Takes a comma-separated list of numeric arguments denoted by values and puts them into Z, replacing anything previous.
+  ├ a i - Takes a single numeric value and inserts it into X at the appropriate location.
+  ├ r - Rotates the contents of th 3 sets such that Y gets X's values, Z gets Y's values, and X gets Z's values.
+  ├ s - Switches the contents of sets X and Y.
+  ├ u - Creates a union of the values in sets X and Y, putting the resulting set into X. Y is cleared. 
+  ├ i - Creates an intersection of the values in sets X and Y, putting the resulting set into X. Y is cleared.
+  ├ c - Creates a deep copy of set X in set Y. If Y previously held contents they are lost. X and Y are independent data structures.
+  ├ l - Takes a one-argument lambda and applies it to every element of X. Results are printed but X is unmodified. Ex: l ->(val){val*1000}
+  └ q - Quit and exit program."
+  # Print out the 3 sets at the end of each loop
+  puts "Set X: #{setX}\nSet Y: #{setY}\nSet Z: #{setZ}\n\n"
+  print "Please input your command: " #request their command
+  #Get user input & Split user input into command and arguments
+  input = gets.split(" ", 2)
   cmd = input[0]                #Command the user wants to use
   args = input[1].split(",")    #Arguments the user is providing for the command
 
   # Check which command the user chose
   case cmd
   when "X".."Z" #command for filling set X, Y, or Z with new values
-    setVals(binding.local_variable_get("set" + cmd), args)
+    args.each do |val| binding.local_variable_get("set" + cmd).add(Integer(val)) end
   when "a" #command for adding one additional value to set X specifically
     setX.add(args[0].to_i) unless args.length() != 1
   when "r" #command for rotating the 3 sets
@@ -58,10 +56,5 @@ until false #Infinite Loop until forced to break
     # Give error message to let the user know their mistake. Colored red!
     puts "\e[#{31}m    ERROR:\e[0m #{cmd} is not a valid command! Please Refer to the command list."
   end
-  # Print out the 3 sets at the end of each loop
-  puts "Set X: #{setX}\nSet Y: #{setY}\nSet Z: #{setZ}"
 end
 print "Exiting program, goodbye!"
-#############################################################################################
-# End of Main Program Loop
-#############################################################################################
