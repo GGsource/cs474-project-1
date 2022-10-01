@@ -5,7 +5,7 @@
 # Description: This file contains the main content of the command-line program, the
 # main loop of the project. the valid command line arguments are defined here!
 #############################################################################################
-require_relative "BST_Set"
+require_relative "BST_Set" #Import the created set class
 setX, setY, setZ = BST_Set.new, BST_Set.new, BST_Set.new #Our 3 main sets, beginning as null
 puts "Hello, welcome to CS474 Project 1!" # Greet the user
 until false #Infinite Loop until forced to break

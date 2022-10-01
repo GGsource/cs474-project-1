@@ -1,3 +1,10 @@
+#############################################################################################
+# Author: Geo Gonzalez
+# Name: BST_Set.rb
+# Date: September 28th 2022
+# Description: This file contains the BST_Set class, the class for each set. They work as
+# sets because duplicates are not allowed, but they are structured like a binary search tree.
+#############################################################################################
 class BST_Set #Class for our sets in tree form
   def initialize()
     @root = nil
