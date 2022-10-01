@@ -24,13 +24,11 @@ until false #Infinite Loop until forced to break
   ├ c - Creates a deep copy of set X in set Y. If Y previously held contents they are lost. X and Y are independent data structures.
   ├ l - Takes a one-argument lambda and applies it to every element of X. Results are printed but X is unmodified. Ex: l ->(val){val*1000}
   └ q - Quit and exit program."
-  # Print out the 3 sets at the end of each loop
-  puts "Set X: #{setX}\nSet Y: #{setY}\nSet Z: #{setZ}\n\n"
-  print "Please input your command: " #request their command
-  #Get user input & Split user input into command and arguments
-  input = gets.split(" ", 2)
-  cmd = input[0]                #Command the user wants to use
-  args = input[1].split(",")    #Arguments the user is providing for the command
+  puts "Set X: #{setX}\nSet Y: #{setY}\nSet Z: #{setZ}\n\n" # Print out the 3 sets at the end of each loop
+  print "Please input your command: "                       #request their command
+  input = gets.split(" ", 2)                                #Get user input & split it into command & arguments
+  cmd = input[0]                                            #Command the user wants to use
+  args = input[1].split(",")                                #Arguments the user is providing for the command
 
   # Check which command the user chose
   case cmd
